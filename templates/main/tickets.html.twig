@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {% if 'ROLE_ADMIN' not in app.user.roles and 'ROLE_AGENT' not in app.user.roles %}
+        <button class="btn btn-dark mt-1" onclick="window.location.href='/tickets/make';">open ticket</button>
+    {% endif %}
+
+    {% if tickets|length == 0 %}
+        {% if 'ROLE_ADMIN' not in app.user.roles and 'ROLE_AGENT' not in app.user.roles %}
+            <br>
+            you have no open tickets
+        {% endif %}
+
+        {% if 'ROLE_ADMIN' in app.user.roles  %}
+            there are no open tickets
+        {% endif %}
+
+        {% if 'ROLE_AGENT' in app.user.roles %}
+            you have no assigned tickets
+        {% endif %}
+    {% else %}
+
+        <table>
+            <tr id="first-row">
+                <th>creator</th>
+                <th>priority</th>
+                <th>assigned to</th>
+            </tr>
+        {% for ticket in tickets %}
+            <tr>
+                <td>
+                    {% if ticket.createdBy is null %}
+                        ~deleted~
+                    {% else %}
+                        {{ticket.createdBy.username}}        
+                    {% endif %}
+                </td>
+                <td>{{ticket.priority | slice(1)}}</td>
+                <td>
+                    {% if ticket.belongsTo is null %}
+                        no one
+                    {% else %}
+                        {{ticket.belongsTo.username}}
+                    {% endif %}
+                </td>
+                <td><td><a href="/ticket/{{ticket.id}}">click to see</a></td></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    
+    
+    
+{% endblock %}

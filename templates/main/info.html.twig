@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if ticket.createdBy is null %}
+        <h1>Ticket by ~deleted~</h1>
+    {% else %}
+        <h1>Ticket by {{ticket.createdBy.username}}</h1>    
+    {% endif %}
+    
+    {{ form_start(form) }}
+
+        <div class="form-group">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control d-none'}}) }}
+            <input class="form-control" type="text" value='{{ticket.title}}' disabled>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.text) }}
+            {{ form_widget(form.text, {'attr': {'class': 'form-control d-none'}}) }}
+            <textarea id="ticket_form_text" required="required" class="form-control " disabled>{{ticket.text}}</textarea>
+        </div>
+
+        <div class="form-group">
+            Priority: {{ticket.priority | slice(1)}}
+        </div>
+
+        {% if 'ROLE_ADMIN' in app.user.roles %}        
+            Assign ticket to: {{ form_widget(form.belongsTo)}} <br>
+            <button type="submit" class="btn btn-secondary mb-2 mt-2">Submit</button>
+        {% else %}
+            {{ form_widget(form.priority, {'attr': {'class': 'form-control d-none'}}) }}
+        {% endif %}
+
+        {% if 'ROLE_ADMIN' in app.user.roles or 'ROLE_AGENT' in app.user.roles %}
+            {% if not ticket.status %}
+                <a class="btn btn-success mb-2 mt-2" href="/close/{{ticket.id}}">Close Ticket</a>
+            {% endif %}
+        {% else %} {# is user #}
+            <div class="form-group">
+                {% if ticket.belongsTo is null%}
+                    Ticket is not assigned to anybody
+                {% else %}
+                    Ticket is assigned to: {{ticket.belongsTo.username}}
+                {% endif %}
+            </div>
+        {% endif %}
+
+    {{ form_end(form) }}
+    
+    <style>
+        a
+        .form-control:focus {
+            border-color: grey;
+            box-shadow: inset 0 1px 1px grey, 0 0 8px grey;
+        }
+        input[type='radio'] {
+            accent-color: grey;
+        }
+        input[type=''] {
+            accent-color: grey;
+        }
+    </style>
+    
+{% endblock %}

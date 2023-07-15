@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Manage user: {{user.username}}</h1>
+
+    <div class="container">
+        <div class="row">
+            <div>
+
+                <form method="post" action="{{ path('users_infoUser', {'id': user.id}) }}">
+
+                    <div class="form-group">
+                        Change username to:
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control d-none'}}) }}
+                        <input type="text" name="changeName" class='form-control' value={{user.username}} >
+                    </div>
+                
+                    <div class="form-group">
+                        {{ form_widget(form.password, {'attr': {'class': 'form-control d-none'}}) }}
+                        <input type="text" name="changePassword" class='form-control' placeholder="Change user's password to:"/>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control d-none'}}) }}
+                        <input type="text" name="changeEmail" class='form-control'  value={{user.email}}>
+                    </div>
+                
+                    <div class="form-group">
+                        Change a role for user:
+                        {{ form_widget(form.roles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                
+                    <button type="submit" class="btn btn-secondary">Change</button>
+                    <a href="/users/delete/{{user.id}}" class="btn btn-danger">Delete user </a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <style>
+        .form-control:focus {
+            border-color: grey;
+            box-shadow: inset 0 1px 1px grey, 0 0 8px grey;
+        }
+        
+        #back{
+            border-color: #155724;
+            background-color: #D4EDDA;
+        }
+    </style>
+{% endblock %}
+

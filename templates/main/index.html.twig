@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="info">
+        <div class="icon"style="color:darkviolet;"><i class="fa fa-ticket"></i></div>
+        <div class="con">
+            Total tickets <br>
+            {{status[0] + status[1]}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="icon"style="color:red;"><i class="fa fa-ticket"></i></div>
+        <div class="con">
+            Opened tickets <br>
+            {{status[0]}}
+        </div>
+    </div>
+    <div class="info">
+        <div class="icon" style="color:green;"><i class="fa fa-ticket"></i></div>
+        <div class="con">
+            Closed tickets <br>
+            {{status[1]}}
+        </div>
+    </div>
+    
+{% endblock %}

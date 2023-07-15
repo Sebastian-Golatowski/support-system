@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+        <table>
+            <tr id="first-row">
+                <th>user name</th>
+                <th>role</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.roles[0]| slice(5)| lower | capitalize }}</td>
+                    <td><a href='/users/manage/user/{{user.id}}'">see user</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

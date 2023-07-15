@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{# {% block bootsrtap %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %} #}
+
+{% block body %}
+    <div class="info" onclick="window.location.href='/users/create';">
+        <div class="icon"style="color:black;"><i class="fa fa-user-plus" aria-hidden="true"></i></div>
+        <div class="con">
+            Create user
+        </div>
+    </div>
+    <div class="info" onclick="window.location.href='/users/manage';">
+        <div class="icon"style="color:black;"><i class="fa fa-th-list" aria-hidden="true"></i></div>
+        <div class="con">
+            Manage users
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,113 @@
+body{
+    /* background-color: azure; */
+    /* text-align: center; */
+
+    margin: auto;
+    height: 60%;
+    width: 65%; 
+}
+#content{
+    display: flex;
+    height: 400px
+}
+header{
+    text-align: center;
+    background-color: gray;
+    height: 50px;
+    width: 100%;
+}
+
+#menu{
+    background-color: white;
+    height: 305px;
+    width: 28%;
+}
+
+#depends{
+    background-color: white;
+    width: 75%;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+footer{
+    text-align: center;
+    background-color: gray;
+    height: 50px;
+    width: 100%;
+}
+.button{
+    display: flex;
+    background-color: white;
+    width: 60%;
+    font-weight: bold;
+    font-size: x-large;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+.button:hover{
+    cursor: pointer;
+}
+.button > .icon {
+    text-align: center;
+    height: 100%;
+    width: 20%;
+}
+.button > .text {
+    text-align: left;
+    height: 100%;
+    width: 80%;
+    
+}
+
+.info{
+    margin-left: 10px;
+    margin-top: 8px;
+    box-shadow: 5px 5px 5px black;
+    border: 1px;
+    display: flex;
+    background-color: white;
+    font-size: x-large;
+    width: 35%;
+}
+
+.info:hover{
+    cursor: pointer;
+}
+
+.info > .icon{
+    font-size: xx-large;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+table{
+    text-align: center;
+    border-collapse: collapse;
+    padding: 10px;
+
+}
+
+table > td, th{
+    text-align: center;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}
+
+tr{
+    border: 1px solid black;
+}
+
+td{
+    padding: 6px;
+}
+
+#first-row{
+    border: none;
+}
